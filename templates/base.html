@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block hade %}  {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href={{ url_for('static', filename='css/style-index.css') }}>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4 pt-5">
+            <h1><a href="index.html" class="logo">NETdevops</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                       class="dropdown-toggle">设备配置管理</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href={{ url_for('config_devices.config_devices') }}>配置设备信息</a>
+                        </li>
+                        <li>
+                            <a href={{ url_for('config_devices.config_devices_config') }}>设备配置下发</a>
+                        </li>
+                        <li>
+                            <a href={{ url_for('config_devices.config_devices_log') }}>设备配置日志</a>
+                        </li>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- <div class="mb-5">
+              <h3 class="h6">搜索</h3>
+              <form action="#" class="colorlib-subscribe-form">
+                <div class="form-group d-flex">
+                  <div class="icon"><span class="icon-paper-plane"></span></div>
+                  <input type="text" class="form-control" placeholder="输入你要查找的信息">
+                </div>
+              </form>
+            </div> -->
+
+            <div class="mb-1">
+                <a type="button" class="btn btn-dark" href={{ url_for('logout') }}>LOGOUT</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        {% block content %} {% endblock %}
+    </div>
+
+</div>
+
+</body>
+
+<script src={{ url_for('static', filename='js/jquery.min.js') }}></script>
+<script src={{ url_for('static', filename='js/bootstrap.min.js') }}></script>
+<script src={{ url_for('static', filename='js/main.js') }}></script>
+
+</html>

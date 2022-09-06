@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block hade  %} 配置结果 {% endblock hade %}
+
+{% block content %}
+<h1 class="mt-5">配置验证</h1>
+<pre>{{ result }}</pre>
+<a href={{ url_for('config_devices.config_devices_log') }}> -- 点击跳转至配置设备信息 -- </a>
+
+{% endblock content %}
+

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block hade  %} 配置设备信息 {% endblock hade %}
+
+{% block content %}
+    <h2 class="mt-4">设备列表</h2>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>IP地址</th>
+            <th>主机名</th>
+            <th>厂商</th>
+            <th>端口</th>
+            <th>操作</th>
+        </tr>
+        {% for device in all_device %}
+            <tr>
+                <td>{{ device.id }}</td>
+                <td>{{ device.ip_address }}</td>
+                <td>{{ device.hostname }}</td>
+                <td>{{ device.vendor }}</td>
+                <td>{{ device.ssh_port }}</td>
+                <td>
+                    <a type="button" class="btn btn-warning" href="/config_devices/edit?device_id={{ device.id }}">编辑</a>
+                    <a type="button" class="btn btn-danger" href="/config_devices/delete?device_id={{ device.id }}">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a class="mt-3 btn btn-primary" href="/config_devices/add">添加设备</a>
+{% endblock content %}

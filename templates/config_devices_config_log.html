@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block hade  %} 设备配置日志 {% endblock hade %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>日志ID</th>
+            <th>目标设备IP</th>
+            <th>操作IP</th>
+            <th>操作</th>
+            <th>状态</th>
+            <th>时间</th>
+            <th>错误日志</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in log_all.items %}
+        <tr>
+            <td>{{log.id}}</td>
+            <td>{{log.target}}</td>
+            <td>{{log.remote_ip_addr}}</td>
+            <td>{{log.action}}</td>
+            <td>{{log.status}}</td>
+            <td>{{log.time}}</td>
+            <td>{{log.messages}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class={% if not log_all.has_prev %} "page-item disabled" {% endif %}>
+      <a class="page-link" href="{{ url_for("config_devices.config_devices_log") }}?page={{ log_all.prev_num }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    {% for num in range(1, log_all.pages + 1) %}
+    <li {% if num == log_all.page %} class="page-item active " {% endif %}>
+      <a class="page-link" href= "{{ url_for("config_devices.config_devices_log") }}?page={{ num }}"> {{ num }} </a>
+    </li>
+    {% endfor %}
+
+    <li class={% if not log_all.has_next %} "page-item disabled"  {% endif %}>
+      <a class="page-link" href="{{ url_for("config_devices.config_devices_log") }}?page={{ log_all.next_num }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock content %}
